@@ -1,4 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import {
+  primary,
+  primaryDark,
+  containerBackground,
+  glassBackground,
+  glassBorder,
+} from '../config/colors';
 
 export default createGlobalStyle`
   * {
@@ -10,8 +17,8 @@ export default createGlobalStyle`
 
   body {
     font-family: sans-serif;
-    background-color: #2A0944;
-    color: rgb(236, 236, 236);
+    background-color: ${primary};
+    color: ${primaryDark};
     text-shadow: 1px 1px 1px black;
   }
 
@@ -21,10 +28,17 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    background: ${primary};
+    border: none;
+    color: ${primaryDark};
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 700;
   }
 
   a {
     text-decoration: none;
+    color: ${primaryDark};
   }
 
   ul {
@@ -39,16 +53,16 @@ export const Container = styled.section`
   padding: 15px 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #70318e;
+  background-color: ${containerBackground};
 
   .glass {
     .glass {
-      background: rgba(200, 100, 237, 0.44);
+      background: ${glassBackground};
       border-radius: 16px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(5.7px);
       -webkit-backdrop-filter: blur(5.7px);
-      border: 1px solid rgba(200, 100, 237, 0.3);
+      border: 1px solid ${glassBorder};
     }
   }
 `;
