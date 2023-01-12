@@ -1,6 +1,8 @@
 export const primary = '#2c016d';
 export const primaryDark = '#e4e4e4';
 
+export const secondary = '#5f22d9';
+
 export const containerBackground = '#70318e';
 
 export const glassBackground = 'rgba(200, 100, 237, 0.44)';
