@@ -1,11 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-  primary,
-  primaryDark,
-  containerBackground,
-  glassBackground,
-  glassBorder,
-} from '../config/colors';
+import * as colors from '../config/colors';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
   * {
@@ -17,8 +12,8 @@ export default createGlobalStyle`
 
   body {
     font-family: sans-serif;
-    background-color: ${primary};
-    color: ${primaryDark};
+    background-color: ${colors.primary};
+    color: ${colors.primaryDark};
     text-shadow: 1px 1px 1px black;
   }
 
@@ -28,9 +23,9 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
-    background: ${primary};
+    background: ${colors.primary};
     border: none;
-    color: ${primaryDark};
+    color: ${colors.primaryDark};
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: 700;
@@ -38,11 +33,27 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${primaryDark};
+    color: ${colors.primaryDark};
   }
 
   ul {
     list-style: none;
+  }
+
+  .Toastify__toast--success {
+    background: ${colors.success};
+  }
+
+  .Toastify__toast--info {
+    background: ${colors.info};
+  }
+
+  .Toastify__toast--warning {
+    background: ${colors.warning};
+  }
+
+  .Toastify__toast--error {
+    background: ${colors.error};
   }
 `;
 
@@ -53,16 +64,16 @@ export const Container = styled.section`
   padding: 15px 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: ${containerBackground};
+  background-color: ${colors.containerBackground};
 
   .glass {
     .glass {
-      background: ${glassBackground};
+      background: ${colors.glassBackground};
       border-radius: 16px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(5.7px);
       -webkit-backdrop-filter: blur(5.7px);
-      border: 1px solid ${glassBorder};
+      border: 1px solid ${colors.glassBorder};
     }
   }
 `;
