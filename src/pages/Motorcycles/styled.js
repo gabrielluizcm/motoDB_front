@@ -17,6 +17,7 @@ export const MotorcycleContainer = styled.div`
 
   span a {
     margin: 0 5px;
+    transition: all 300ms;
   }
 
   span a:hover {

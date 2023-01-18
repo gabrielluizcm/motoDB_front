@@ -23,12 +23,38 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
-    background: ${colors.primary};
+    background: ${colors.error};
     border: none;
     color: ${colors.primaryDark};
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: 700;
+    transition: all 300ms;
+
+    &:hover {
+      filter: brightness(85%);
+    }
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  input {
+    height: 40px;
+    font-size: 18px;
+    border:1px solid ${colors.glassBorder};
+    background: ${colors.glassBackground};
+    color: ${colors.primaryDark};
+    padding: 0 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+
+    &:focus {
+      border: 1px solid ${colors.primaryDark}
+    }
   }
 
   a {
@@ -38,6 +64,16 @@ export default createGlobalStyle`
 
   ul {
     list-style: none;
+  }
+
+  .Toastify__toast-container {
+    left: initial;
+    width: 50%;
+  }
+
+  .Toastify__toast {
+    margin-top: 10px;
+    color: ${colors.primaryDark};
   }
 
   .Toastify__toast--success {
