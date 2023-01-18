@@ -96,6 +96,7 @@ export default createGlobalStyle`
 export const Container = styled.section`
   width: 90%;
   min-width: 300px;
+  max-width: 600px;
   margin: 30px auto;
   padding: 15px 20px;
   border-radius: 5px;

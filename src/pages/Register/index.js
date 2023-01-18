@@ -40,7 +40,9 @@ export default function Register() {
       toast.success('Account created successfully');
       history.push('/login');
     } catch (e) {
-      const errors = get(e, 'response.data.errors', []);
+      const errors = get(e, 'response.data.errors', [
+        'Unable to register at the moment!',
+      ]);
       errors.map((error) => toast.error(`${error}`));
     }
 

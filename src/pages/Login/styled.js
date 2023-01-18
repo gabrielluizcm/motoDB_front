@@ -1,3 +1,7 @@
 import styled from 'styled-components';
 
-export const Paragraph = styled.p``;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+`;
