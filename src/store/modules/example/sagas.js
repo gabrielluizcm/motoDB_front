@@ -18,7 +18,7 @@ function* exampleRequest() {
     yield put(actions.exampleSuccess());
   } catch (e) {
     toast.error('Example error');
-    yield put(actions.exampleError());
+    yield put(actions.exampleFailure());
   }
 }
 
