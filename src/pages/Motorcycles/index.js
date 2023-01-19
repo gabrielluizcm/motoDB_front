@@ -5,21 +5,28 @@ import { get } from 'lodash';
 
 import { Container } from '../../styles/Global';
 import axios from '../../services/axios';
+
+import Loading from '../../components/Loading';
+
 import { MotorcycleContainer, MotorcyclePicture } from './styled';
 
 export default function Motorcycles() {
   const [motorcycles, setMotorcycles] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     async function getData() {
+      setIsLoading(true);
       const response = await axios.get('/motorcycles');
       setMotorcycles(response.data);
+      setIsLoading(false);
     }
     getData();
   }, []);
 
   return (
     <Container>
+      <Loading isLoading={isLoading} />
       <h1>Motorcycles</h1>
 
       <MotorcycleContainer>
