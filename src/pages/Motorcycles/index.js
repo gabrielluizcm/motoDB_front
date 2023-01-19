@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaMotorcycle, FaEdit, FaTrash } from 'react-icons/fa';
+import {
+  FaMotorcycle,
+  FaEdit,
+  FaTrash,
+  FaExclamationCircle,
+} from 'react-icons/fa';
 import { get } from 'lodash';
+import { toast } from 'react-toastify';
 
 import { Container } from '../../styles/Global';
 import axios from '../../services/axios';
@@ -24,13 +30,37 @@ export default function Motorcycles() {
     getData();
   }, []);
 
+  const handleDeleteAsk = (e) => {
+    e.preventDefault();
+    const exclamation = e.currentTarget.nextSibling;
+    exclamation.setAttribute('display', 'block');
+    e.currentTarget.style.display = 'none';
+  };
+
+  const handleDelete = async (e, id, index) => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`/motorcycles/${id}`);
+      const newMotorcycles = [...motorcycles];
+      newMotorcycles.splice(index, 1);
+      setMotorcycles(newMotorcycles);
+      setIsLoading(false);
+    } catch (err) {
+      const errors = get(err, 'response.data.errors', [
+        'Unable to remove index',
+      ]);
+      errors.map((error) => toast.error(error));
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Loading isLoading={isLoading} />
       <h1>Motorcycles</h1>
 
       <MotorcycleContainer>
-        {motorcycles.map((motorcycle) => (
+        {motorcycles.map((motorcycle, index) => (
           <div key={String(motorcycle.id)}>
             <div>
               <MotorcyclePicture>
@@ -49,13 +79,22 @@ export default function Motorcycles() {
                 <i>{motorcycle.displacement}cc</i>
               </span>
             </div>
-            <span>
+            <span className="actions">
               <Link to={`motorcycle/${motorcycle.id}`}>
                 <FaEdit />
               </Link>
-              <Link to={`motorcycle/${motorcycle.id}/delete`}>
+              <Link
+                onClick={handleDeleteAsk}
+                to={`motorcycle/${motorcycle.id}/delete`}
+              >
                 <FaTrash />
               </Link>
+              <FaExclamationCircle
+                className="deleteExclamation"
+                display="none"
+                onClick={(e) => handleDelete(e, motorcycle.id, index)}
+                title="Confirm exclusion?"
+              />
             </span>
           </div>
         ))}

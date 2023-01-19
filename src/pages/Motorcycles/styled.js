@@ -23,6 +23,16 @@ export const MotorcycleContainer = styled.div`
   span a:hover {
     color: ${colors.info};
   }
+
+  .actions {
+    display: flex;
+  }
+
+  .deleteExclamation {
+    margin: 0 5px;
+    color: ${colors.error};
+    cursor: pointer;
+  }
 `;
 export const MotorcyclePicture = styled.div`
   img,
