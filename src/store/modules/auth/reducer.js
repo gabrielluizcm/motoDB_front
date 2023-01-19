@@ -23,6 +23,7 @@ export default (state = initialState, action) => {
       newState.isLoading = false;
       return newState;
     }
+    case types.LOGOUT_REQUEST:
     case types.LOGIN_FAILURE: {
       return initialState;
     }

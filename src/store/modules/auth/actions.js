@@ -20,3 +20,9 @@ export function loginFailure(payload) {
     payload,
   };
 }
+
+export function logoutRequest() {
+  return {
+    type: types.LOGOUT_REQUEST,
+  };
+}
