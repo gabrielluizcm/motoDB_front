@@ -6,16 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Container } from '../../styles/Global';
 import { Form } from './styled';
+import history from '../../services/history';
 import * as actions from '../../store/modules/auth/actions';
 
 import Loading from '../../components/Loading';
 
 export default function Login(props) {
+  const { isLoggedIn, isLoading } = useSelector((state) => state.auth);
+  if (isLoggedIn) history.push('/');
+
   const dispatch = useDispatch();
 
   const prevPath = get(props, 'location.state.prevPath', '/');
-
-  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
