@@ -1,21 +1,33 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
-import { get } from 'lodash';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Container } from '../../styles/Global';
 import { Form } from './styled';
-import axios from '../../services/axios';
-import history from '../../services/history';
-
 import Loading from '../../components/Loading';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Register() {
+  const dispatch = useDispatch();
+
+  const {
+    id: storedId,
+    name: storedName,
+    email: storedEmail,
+  } = useSelector((state) => state.auth.user);
+  const { isLoading } = useSelector((state) => state.auth.isLoading);
+
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!storedId) return;
+    setName(storedName);
+    setEmail(storedEmail);
+  }, [storedId, storedName, storedEmail]);
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -25,7 +37,7 @@ export default function Register() {
     if (name.length < 3 || name.length > 255)
       formErrors.push('"Name" must be at least 3 characters long');
     if (!isEmail(email)) formErrors.push('"Email" must be valid');
-    if (password.length < 6 || password.length > 50)
+    if (!storedId && (password.length < 6 || password.length > 50))
       formErrors.push('"Password" must have 6 to 50 characters');
     if (confirmPassword !== password) formErrors.push('Passwords must match');
 
@@ -34,32 +46,23 @@ export default function Register() {
       return false;
     }
 
-    setIsLoading(true);
-    try {
-      await axios.post('/users', {
+    return dispatch(
+      actions.registerRequest({
         name,
         email,
         password,
-      });
-      toast.success('Account created successfully');
-      setIsLoading(false);
-      history.push('/login');
-    } catch (e) {
-      const errors = get(e, 'response.data.errors', [
-        'Unable to register at the moment!',
-      ]);
-      errors.map((error) => toast.error(`${error}`));
-      setIsLoading(false);
-    }
-
-    return true;
+        confirmPassword,
+        storedId,
+        storedEmail,
+      })
+    );
   }
 
   return (
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>Register</h1>
+      <h1>{storedId ? 'Edit your info' : 'Register'}</h1>
 
       <Form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name">
@@ -68,7 +71,7 @@ export default function Register() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
+            placeholder={storedId ? 'New name' : 'Name'}
           />
         </label>
         <label htmlFor="email">
@@ -77,7 +80,7 @@ export default function Register() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder={storedId ? 'New email' : 'Email'}
           />
         </label>
         <label htmlFor="password">
@@ -86,7 +89,7 @@ export default function Register() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder={storedId ? 'New password' : 'Password'}
           />
         </label>
         <label htmlFor="password">
@@ -95,10 +98,14 @@ export default function Register() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Password Confirmation"
+            placeholder={
+              storedId ? 'New password confirmation' : 'Password confirmation'
+            }
           />
         </label>
-        <button type="submit">Create new account</button>
+        <button type="submit">
+          {storedId ? 'Save changes' : 'Create new account'}
+        </button>
       </Form>
     </Container>
   );
