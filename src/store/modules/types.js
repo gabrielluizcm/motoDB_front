@@ -1,4 +1,4 @@
-export const PERSIST_REHYDRATE = 'persist/rehydrate';
+export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

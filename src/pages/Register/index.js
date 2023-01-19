@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container } from '../../styles/Global';
 import { Form } from './styled';
 import Loading from '../../components/Loading';
-import * as actions from '../../store/modules/auth/actions';
+import * as actions from '../../store/modules/register/actions';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export default function Register() {
       return false;
     }
 
-    return dispatch(
+    dispatch(
       actions.registerRequest({
         name,
         email,
@@ -56,6 +56,8 @@ export default function Register() {
         storedEmail,
       })
     );
+
+    return true;
   }
 
   return (
