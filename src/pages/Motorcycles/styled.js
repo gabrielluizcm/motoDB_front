@@ -1,5 +1,12 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import * as colors from '../../config/colors';
+
+export const Header1 = styled.h1`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+`;
 
 export const MotorcycleContainer = styled.div`
   margin-top: 20px;
@@ -47,4 +54,11 @@ export const MotorcyclePicture = styled.div`
   svg {
     padding: 5px;
   }
+`;
+
+export const NewMotorcycle = styled(Link)`
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  height: 16px;
 `;

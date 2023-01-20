@@ -41,10 +41,8 @@ export default function Register() {
       formErrors.push('"Password" must have 6 to 50 characters');
     if (confirmPassword !== password) formErrors.push('Passwords must match');
 
-    if (formErrors.length) {
-      formErrors.forEach((error) => toast.warning(error));
-      return false;
-    }
+    if (formErrors.length)
+      return formErrors.forEach((error) => toast.warning(error));
 
     dispatch(
       actions.registerRequest({

@@ -5,6 +5,7 @@ import {
   FaEdit,
   FaTrash,
   FaExclamationCircle,
+  FaPlusSquare,
 } from 'react-icons/fa';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
@@ -14,7 +15,12 @@ import axios from '../../services/axios';
 
 import Loading from '../../components/Loading';
 
-import { MotorcycleContainer, MotorcyclePicture } from './styled';
+import {
+  MotorcycleContainer,
+  MotorcyclePicture,
+  NewMotorcycle,
+  Header1,
+} from './styled';
 
 export default function Motorcycles() {
   const [motorcycles, setMotorcycles] = React.useState([]);
@@ -57,7 +63,12 @@ export default function Motorcycles() {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>Motorcycles</h1>
+      <Header1>
+        Motorcycles
+        <NewMotorcycle to="/motorcycle">
+          <FaPlusSquare />
+        </NewMotorcycle>
+      </Header1>
 
       <MotorcycleContainer>
         {motorcycles.map((motorcycle, index) => (
