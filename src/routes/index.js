@@ -6,6 +6,7 @@ import MyRoute from './MyRoute';
 import Login from '../pages/Login';
 import Motorcycles from '../pages/Motorcycles';
 import Motorcycle from '../pages/Motorcycle';
+import Album from '../pages/Album';
 import Register from '../pages/Register';
 import Error404 from '../pages/Error404';
 
@@ -15,12 +16,7 @@ export default function Routes() {
       <MyRoute exact path="/" component={Motorcycles} />
       <MyRoute exact path="/motorcycle" component={Motorcycle} isPrivate />
       <MyRoute exact path="/motorcycle/:id" component={Motorcycle} isPrivate />
-      <MyRoute
-        exact
-        path="/motorcycle/album/:id"
-        component={Motorcycle}
-        isPrivate
-      />
+      <MyRoute exact path="/motorcycle/album/:id" component={Album} isPrivate />
       <MyRoute exact path="/register" component={Register} />
       <MyRoute exact path="/login" component={Login} />
       <MyRoute path="*" component={Error404} />

@@ -130,7 +130,7 @@ export default function Motorcycle({ match }) {
 
       if (status === 401) {
         toast.warning('Authentication failed');
-        dispatch(actions.loginFailure);
+        dispatch(actions.loginFailure());
       }
     }
 
@@ -149,7 +149,7 @@ export default function Motorcycle({ match }) {
           ) : (
             <FaMotorcycle size={100} />
           )}
-          <Link to={`/motorcycles/album/${id}`}>
+          <Link to={`/motorcycle/album/${id}`}>
             <FaEdit size={18} />
           </Link>
         </MotorcyclePicture>
