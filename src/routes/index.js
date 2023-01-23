@@ -15,6 +15,12 @@ export default function Routes() {
       <MyRoute exact path="/" component={Motorcycles} />
       <MyRoute exact path="/motorcycle" component={Motorcycle} isPrivate />
       <MyRoute exact path="/motorcycle/:id" component={Motorcycle} isPrivate />
+      <MyRoute
+        exact
+        path="/motorcycle/album/:id"
+        component={Motorcycle}
+        isPrivate
+      />
       <MyRoute exact path="/register" component={Register} />
       <MyRoute exact path="/login" component={Login} />
       <MyRoute path="*" component={Error404} />

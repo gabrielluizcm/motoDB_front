@@ -3,10 +3,12 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { isInt, isFloat } from 'validator';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaMotorcycle, FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/Global';
-import { Form } from './styled';
+import { Form, MotorcyclePicture, Title } from './styled';
 import Loading from '../../components/Loading';
 import axios from '../../services/axios';
 import history from '../../services/history';
@@ -15,7 +17,7 @@ import * as actions from '../../store/modules/auth/actions';
 export default function Motorcycle({ match }) {
   const dispatch = useDispatch();
 
-  const id = get(match, 'params.id', 0);
+  const id = get(match, 'params.id', '');
   const { id: creatorId } = useSelector((state) => state.auth.user);
 
   const [brand, setBrand] = React.useState('');
@@ -25,6 +27,7 @@ export default function Motorcycle({ match }) {
   const [cylinders, setCylinders] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [topSpeed, setTopSpeed] = React.useState('');
+  const [photoUrl, setPhotoUrl] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
@@ -35,7 +38,9 @@ export default function Motorcycle({ match }) {
 
       try {
         const { data } = await axios.get(`/motorcycles/${id}`);
-        // const photo = get(data, 'Photos[0].url', '');
+        const photo = get(data, 'Photos[0].url', '');
+
+        setPhotoUrl(photo);
 
         setBrand(data.brand);
         setModel(data.model);
@@ -135,7 +140,20 @@ export default function Motorcycle({ match }) {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>{id ? `Edit ${brand} ${model}` : 'New motorcycle'}</h1>
+      <Title>{id ? 'Edit motorcycle' : 'New motorcycle'}</Title>
+
+      {id && (
+        <MotorcyclePicture>
+          {photoUrl ? (
+            <img crossOrigin="" src={photoUrl} alt={`${brand} ${model}`} />
+          ) : (
+            <FaMotorcycle size={100} />
+          )}
+          <Link to={`/motorcycles/album/${id}`}>
+            <FaEdit size={18} />
+          </Link>
+        </MotorcyclePicture>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="brand">
