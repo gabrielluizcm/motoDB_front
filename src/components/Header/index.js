@@ -5,6 +5,7 @@ import {
   FaPowerOff,
   FaUser,
   FaUserPlus,
+  FaMotorcycle,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,6 +28,9 @@ export default function Header() {
     <Nav>
       <Link to="/">
         <FaHome size={20} />
+      </Link>
+      <Link to="/motorcycles">
+        <FaMotorcycle size={20} />
       </Link>
       {isLoggedIn ? (
         <>
