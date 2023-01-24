@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import * as actions from '../../store/modules/auth/actions';
 import history from '../../services/history';
-import { Nav } from './styled';
+import { Nav, Title } from './styled';
 
 export default function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -26,6 +26,19 @@ export default function Header() {
 
   return (
     <Nav>
+      <Title>
+        MotoDB
+        <p>
+          Developed by{' '}
+          <a
+            href="http://github.com/gabrielluizcm"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Gabriel Luiz
+          </a>
+        </p>
+      </Title>
       <Link to="/">
         <FaHome size={20} />
       </Link>

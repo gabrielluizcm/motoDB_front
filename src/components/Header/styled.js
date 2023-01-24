@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { secondary } from '../../config/colors';
+import { secondary, success } from '../../config/colors';
 
 export const Nav = styled.nav`
   background: ${secondary};
@@ -11,5 +11,18 @@ export const Nav = styled.nav`
   a {
     margin: 0 10px 0 0;
     font-weight: bold;
+  }
+`;
+
+export const Title = styled.h1`
+  position: absolute;
+  left: 10px;
+  p {
+    font-size: 8px;
+  }
+
+  a {
+    margin: 0;
+    color: ${success};
   }
 `;

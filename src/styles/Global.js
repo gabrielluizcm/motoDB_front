@@ -15,10 +15,14 @@ export default createGlobalStyle`
     background-color: ${colors.primary};
     color: ${colors.primaryDark};
     text-shadow: 1px 1px 1px black;
+    min-height: 100%;
+    display:flex;
+    flex-direction: column;
   }
 
   html, body, #root {
     height: 100%;
+    position: relative;
   }
 
   button {
