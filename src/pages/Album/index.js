@@ -58,11 +58,15 @@ export default function Album({ match }) {
 
     try {
       setIsLoading(true);
-      await axios.post('/photos', formData, {
+      const { data } = await axios.post('/photos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+
+      const newPhotos = [...photos];
+      newPhotos.unshift(data);
+      setPhotos(newPhotos);
 
       toast.success('Photo sent successfully');
       setIsLoading(false);
