@@ -36,18 +36,13 @@ export const Title = styled.h1`
 
 export const PhotoAlbum = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  div {
-    padding: 5px;
-    flex: 1;
-  }
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-gap: 15px;
 
   div:first-child {
-    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 
   img {
