@@ -21,16 +21,28 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const MotorcyclePicture = styled.div`
+export const PictureWrap = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0 20px;
+`;
+
+export const MotorcyclePicture = styled.label`
   position: relative;
-  margin-top: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.glassBackground};
+  border: 2px solid ${colors.glassBorder};
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 20px 10px 0 0;
 
   img {
-    width: 100px;
+    width: auto;
     height: 100px;
     border-radius: 5px;
   }

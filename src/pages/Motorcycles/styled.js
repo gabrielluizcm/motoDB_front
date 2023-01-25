@@ -41,15 +41,22 @@ export const MotorcycleContainer = styled.div`
     cursor: pointer;
   }
 `;
-export const MotorcyclePicture = styled.div`
+export const MotorcyclePicture = styled.label`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.glassBackground};
+  border: 2px solid ${colors.glassBorder};
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 0 10px 0 0;
+
   img,
   svg {
-    width: 30px;
     height: 30px;
-    border-radius: 5px;
-    background-color: ${colors.glassBackground};
-    border: 1px solid ${colors.glassBorder};
-    margin-right: 10px;
+    width: auto;
   }
   svg {
     padding: 5px;

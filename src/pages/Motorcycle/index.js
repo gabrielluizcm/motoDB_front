@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/Global';
-import { Form, MotorcyclePicture, Title } from './styled';
+import { Form, PictureWrap, MotorcyclePicture, Title } from './styled';
 import Loading from '../../components/Loading';
 import axios from '../../services/axios';
 import history from '../../services/history';
@@ -142,18 +142,20 @@ export default function Motorcycle({ match }) {
       <Loading isLoading={isLoading} />
       <Title>{id ? 'Edit motorcycle' : 'New motorcycle'}</Title>
 
-      {id && (
-        <MotorcyclePicture>
-          {photoUrl ? (
-            <img crossOrigin="" src={photoUrl} alt={`${brand} ${model}`} />
-          ) : (
-            <FaMotorcycle size={100} />
-          )}
-          <Link to={`/motorcycle/album/${id}`}>
-            <FaEdit size={18} />
-          </Link>
-        </MotorcyclePicture>
-      )}
+      <PictureWrap>
+        {id && (
+          <MotorcyclePicture>
+            {photoUrl ? (
+              <img crossOrigin="" src={photoUrl} alt={`${brand} ${model}`} />
+            ) : (
+              <FaMotorcycle size={100} />
+            )}
+            <Link to={`/motorcycle/album/${id}`}>
+              <FaEdit size={18} />
+            </Link>
+          </MotorcyclePicture>
+        )}
+      </PictureWrap>
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="brand">

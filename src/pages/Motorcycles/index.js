@@ -82,9 +82,10 @@ export default function Motorcycles() {
                     alt={`${motorcycle.brand} ${motorcycle.model}`}
                   />
                 ) : (
-                  <FaMotorcycle size={24} />
+                  <FaMotorcycle />
                 )}
               </MotorcyclePicture>
+
               <span>
                 <b>{motorcycle.brand}</b> {motorcycle.model}{' '}
                 <i>{motorcycle.displacement}cc</i>
