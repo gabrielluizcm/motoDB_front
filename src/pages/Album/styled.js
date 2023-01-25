@@ -37,7 +37,7 @@ export const Title = styled.h1`
 export const PhotoAlbum = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(2, calc(50% - 7.5px));
   grid-gap: 15px;
 
   div:first-child {
