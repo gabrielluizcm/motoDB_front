@@ -101,6 +101,7 @@ export default function Album({ match }) {
       if (index === 0) setMainPhotoUrl(newPhotos[0].url);
 
       setIsLoading(false);
+      toast.success('Photo deleted successfully');
     } catch (err) {
       const errors = get(err, 'response.data.errors', [
         'Unable to remove index',

@@ -50,6 +50,8 @@ export default function Motorcycles() {
       const newMotorcycles = [...motorcycles];
       newMotorcycles.splice(index, 1);
       setMotorcycles(newMotorcycles);
+
+      toast.success('Motorcycle deleted successfully');
       setIsLoading(false);
     } catch (err) {
       const errors = get(err, 'response.data.errors', [
