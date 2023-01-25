@@ -3,6 +3,8 @@ import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { FaTrash, FaExclamation } from 'react-icons/fa';
 
 import { Container } from '../../styles/Global';
 import Loading from '../../components/Loading';
@@ -79,6 +81,35 @@ export default function Album({ match }) {
     }
   };
 
+  const handleDeleteAsk = (e) => {
+    e.preventDefault();
+    const exclamation = e.currentTarget.nextSibling;
+    exclamation.style.display = 'flex';
+    e.currentTarget.style.display = 'none';
+  };
+
+  const handleDelete = async (e, photoId, index) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      await axios.delete(`/photos/${photoId}`);
+
+      const newPhotos = [...photos];
+      newPhotos.splice(index, 1);
+      setPhotos(newPhotos);
+
+      if (index === 0) setMainPhotoUrl(newPhotos[0].url);
+
+      setIsLoading(false);
+    } catch (err) {
+      const errors = get(err, 'response.data.errors', [
+        'Unable to remove index',
+      ]);
+      errors.map((error) => toast.error(error));
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Loading isLoading={isLoading} />
@@ -103,6 +134,17 @@ export default function Album({ match }) {
         {photos.map((photo, index) => (
           <div key={String(photo.id)}>
             <img crossOrigin="" src={photo.url} alt={index} />
+            <Link onClick={handleDeleteAsk} to="/album/delete/:id">
+              <FaTrash />
+            </Link>
+            <Link
+              to="/album/delete/:id"
+              className="realDelete"
+              title="Confirm exclusion?"
+              onClick={(e) => handleDelete(e, photo.id, index)}
+            >
+              <FaExclamation />
+            </Link>
           </div>
         ))}
       </PhotoAlbum>

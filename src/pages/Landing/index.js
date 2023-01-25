@@ -73,7 +73,7 @@ export default function Landing() {
         </Code>
         <h3>Retrieve single motorcycle detail:</h3>
         <code>
-          GET - /motorcycles/<i>id</i>
+          GET - /motorcycles/<i>:id</i>
         </code>
         <h4>Response:</h4>
         <Code>

@@ -20,8 +20,8 @@ export const Form = styled.form`
     overflow: hidden;
 
     img {
-      width: 100px;
       height: 100px;
+      flex: 1;
     }
   }
 
@@ -50,5 +50,35 @@ export const PhotoAlbum = styled.div`
     height: 100%;
     border-radius: 15px;
     border: 2px solid ${colors.glassBorder};
+  }
+
+  div {
+    position: relative;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: ${colors.error};
+      opacity: 40%;
+    }
+  }
+
+  .realDelete {
+    display: none;
+    opacity: 100%;
+  }
+
+  div:hover {
+    a {
+      opacity: 100%;
+    }
   }
 `;
